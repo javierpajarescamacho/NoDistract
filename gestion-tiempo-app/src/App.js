@@ -1,4 +1,4 @@
-import { useState } from "react";
+/*import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const recommendedTimes = {
@@ -110,4 +110,157 @@ export default function App() {
       </button>
     </div>
   );
-}
+} */
+
+  import { useState, useEffect } from "react";
+  import { Card, CardContent } from "react-bootstrap"; // Actualiza la importación de Card y Button si usas otro paquete
+  import { Button } from "react-bootstrap"; // Cambia esto si usas otro paquete para los botones
+  import { Home, BarChart3, Clock, Settings, Award, AlertCircle } from "lucide-react";
+  
+  // Mapeo de aplicaciones con sus logos
+  const appIcons = {
+    instagram: <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" className="w-8 h-8" />,
+    tiktok: <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2018.svg" alt="TikTok" className="w-8 h-8" />,
+    youtube: <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" className="w-8 h-8" />,
+    google: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="w-8 h-8" />,
+    whatsapp: <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-8 h-8" />,
+    linkedin: <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/LinkedIn_Logo_2019.svg" alt="LinkedIn" className="w-8 h-8" />,
+    game: <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Gamepad.svg" alt="Game" className="w-8 h-8" />,
+  };
+  
+  const recommendedTimes = {
+    instagram: 180,
+    tiktok: 90,
+    youtube: 150,
+    google: 60,
+    whatsapp: 120,
+    linkedin: 80,
+    game: 100,
+  };
+  
+  export default function NoDistractHome() {
+    const [usage, setUsage] = useState([]);
+    const [selectedApp, setSelectedApp] = useState("instagram");
+    const [selectedTime, setSelectedTime] = useState(1);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+    const addUsage = () => {
+      const newUsage = { app: selectedApp, time: selectedTime, remainingTime: selectedTime * 3600 }; // tiempo en segundos
+      setUsage([...usage, newUsage]);
+    };
+  
+    // Función para convertir segundos a formato hh:mm:ss
+    const formatTime = (seconds) => {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+      return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    };
+  
+    // Función para simular el decremento del tiempo
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        setUsage((prevUsage) =>
+          prevUsage.map((entry) =>
+            entry.remainingTime > 0
+              ? { ...entry, remainingTime: entry.remainingTime - 1 }
+              : entry
+          )
+        );
+      }, 1000);
+  
+      return () => clearInterval(intervalId);
+    }, []);
+  
+    return (
+      <div className="p-6 max-w-2xl mx-auto" style={{ backgroundColor: "#e0f7fa" }}>
+        <h1 className="text-3xl font-bold mb-4">Bienvenido a NoDistract</h1>
+        <p className="mb-6 text-gray-600">Toma el control de tu tiempo y reduce las distracciones digitales.</p>
+  
+        <Card className="mb-6">
+          <CardContent>
+            <h2 className="text-xl font-semibold mb-4">Control de tiempo de uso</h2>
+            <div className="flex gap-4 mb-3">
+              {/* Dropdown personalizado */}
+              <div className="relative">
+                <button
+                  className="p-2 border rounded flex items-center gap-2"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                >
+                  {appIcons[selectedApp]} {selectedApp.charAt(0).toUpperCase() + selectedApp.slice(1)}
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute top-full left-0 right-0 bg-white border mt-2 rounded shadow-lg z-10">
+                    {Object.keys(recommendedTimes).map((app) => (
+                      <div
+                        key={app}
+                        className="p-2 flex items-center gap-2 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => {
+                          setSelectedApp(app);
+                          setIsDropdownOpen(false);
+                        }}
+                      >
+                        {appIcons[app]} {app.charAt(0).toUpperCase() + app.slice(1)}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <select
+                className="p-2 border rounded"
+                value={selectedTime}
+                onChange={(e) => setSelectedTime(parseInt(e.target.value))}
+              >
+                {[...Array(24).keys()].map((hour) => (
+                  <option key={hour + 1} value={hour + 1}>{hour + 1} horas</option>
+                ))}
+              </select>
+              <Button onClick={addUsage} className="bg-blue-500 text-white px-3 py-2 rounded">Agregar</Button>
+            </div>
+          </CardContent>
+        </Card>
+  
+        {/* Mostrar las alertas y contadores de cada app con los logos */}
+        <div className="mt-6">
+          {usage.map((entry, index) => (
+            <div key={index} className="mb-4 bg-red-200 p-4 rounded flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <AlertCircle className="w-6 h-6 text-red-600" />
+                <div className="flex items-center gap-2">
+                  {/* Logo de la app */}
+                  {appIcons[entry.app]}
+                  <span className="font-semibold text-red-600">{entry.app.charAt(0).toUpperCase() + entry.app.slice(1)}</span>
+                </div>
+              </div>
+              <div>
+                <p className="text-red-600">Tiempo asignado: {entry.time} horas</p>
+                <p className="text-red-600">Tiempo restante: {formatTime(entry.remainingTime)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+  
+        <div className="flex justify-around mt-6">
+          <Button variant="ghost" className="p-3 rounded-full bg-blue-100 hover:bg-blue-200">
+            <Clock className="w-6 h-6 text-blue-600" />
+          </Button>
+  
+          <Button variant="ghost" className="p-3 rounded-full bg-blue-100 hover:bg-blue-200">
+            <BarChart3 className="w-6 h-6 text-blue-600" />
+          </Button>
+  
+          <Button variant="ghost" className="p-3 rounded-full bg-blue-600 hover:bg-blue-700">
+            <Home className="w-8 h-8 text-white" />
+          </Button>
+  
+          <Button variant="ghost" className="p-3 rounded-full bg-blue-100 hover:bg-blue-200">
+            <Settings className="w-6 h-6 text-blue-600" />
+          </Button>
+  
+          <Button variant="ghost" className="p-3 rounded-full bg-blue-100 hover:bg-blue-200">
+            <Award className="w-6 h-6 text-blue-600" />
+          </Button>
+        </div>
+      </div>
+    );
+  }

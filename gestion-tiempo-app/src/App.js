@@ -113,7 +113,7 @@ export default function App() {
 } */
 
   import { useState, useEffect } from "react";
-  import { Card, CardContent } from "react-bootstrap"; // Actualiza la importación de Card y Button si usas otro paquete
+  import { Card, CardContent } from "react-bootstrap/Card"; // Actualiza la importación de Card y Button si usas otro paquete
   import { Button } from "react-bootstrap"; // Cambia esto si usas otro paquete para los botones
   import { Home, BarChart3, Clock, Settings, Award, AlertCircle } from "lucide-react";
   

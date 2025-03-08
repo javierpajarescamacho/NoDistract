@@ -120,15 +120,14 @@ export default function App() {
   
   // Mapeo de aplicaciones con sus logos
   const appIcons = {
-    instagram: <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" className="w-4 h-4" />,
-    tiktok: <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2018.svg" alt="TikTok" className="w-4 h-4" />,
-    youtube: <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" className="w-4 h-4" />,
-    google: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" className="w-4 h-4" />,
-    whatsapp: <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="w-4 h-4" />,
-    linkedin: <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/LinkedIn_Logo_2019.svg" alt="LinkedIn" className="w-4 h-4" />,
-    game: <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Gamepad.svg" alt="Game" className="w-4 h-4" />,
+    instagram: <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" style={{ width: '24px', height: '24px' }} />,
+    tiktok: <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2018.svg" alt="TikTok" style={{ width: '24px', height: '24px' }} />,
+    youtube: <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" style={{ width: '24px', height: '24px' }} />,
+    google: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{ width: '24px', height: '24px' }} />,
+    whatsapp: <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{ width: '24px', height: '24px' }} />,
+    linkedin: <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/LinkedIn_Logo_2019.svg" alt="LinkedIn" style={{ width: '24px', height: '24px' }} />,
+    game: <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Gamepad.svg" alt="Game" style={{ width: '24px', height: '24px' }} />,
   };
-  
   const recommendedTimes = {
     instagram: 180,
     tiktok: 90,

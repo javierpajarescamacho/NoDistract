@@ -120,13 +120,13 @@ export default function App() {
   
   // Mapeo de aplicaciones con sus logos
   const appIcons = {
-    instagram: <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" style={{ width: '72px', height: '72px' }} />,
-    tiktok: <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2018.svg" alt="TikTok" style={{ width: '72px', height: '72px' }} />,
-    youtube: <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" style={{ width: '72px', height: '72px' }} />,
-    google: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{ width: '72px', height: '72px' }} />,
-    whatsapp: <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{ width: '72px', height: '72px' }} />,
-    linkedin: <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/LinkedIn_Logo_2019.svg" alt="LinkedIn" style={{ width: '72px', height: '72px' }} />,
-    game: <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Gamepad.svg" alt="Game" style={{ width: '72px', height: '72px' }} />,
+    instagram: <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram" style={{ width: '144px', height: '144px' }} />,
+    tiktok: <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/TikTok_logo_2018.svg" alt="TikTok" style={{ width: '144px', height: '144px' }} />,
+    youtube: <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" style={{ width: '144px', height: '144px' }} />,
+    google: <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style={{ width: '72px', height: '144px' }} />,
+    whatsapp: <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{ width: '144px', height: '144px' }} />,
+    linkedin: <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/LinkedIn_Logo_2019.svg" alt="LinkedIn" style={{ width: '144px', height: '144px' }} />,
+    game: <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Gamepad.svg" alt="Game" style={{ width: '144px', height: '144px' }} />,
   };
   const recommendedTimes = {
     instagram: 180,
